@@ -1,28 +1,26 @@
-from datetime import datetime
+#
+import requests
+from requests.models import Response
 
-name = "Alice"
-age = 30
-height = 5.6
+url = "https://jsonplaceholder.typicode.com/todos/"
+api_response: Response = requests.get(url)
 
-info = f"Name: {name}, Age: {age}, Height: {height:.1f}, Debug: {age=}, Uppercase: {name.upper()!r}"
-# Output: Name: Alice, Age: 30, Height: 5.6, Debug: age=30, Uppercase: 'ALICE'
-print(info)
+if api_response.status_code == 200:
+    todos = api_response.json()
+    print(todos)
+else:
+    print(f"Failed to retrieve data: {api_response.status_code}")
 
-print(f"Debug: {name=}")
-# Output: Debug: name='Alice'
 
-today = datetime(year=2017, month=1, day=27)
-print(f"Today is {today}")
-# Output: Today is 2017-01-27 00:00:00
-print(f"{today = :%A, %B %d, %Y}")
-# Output: today = Friday, January 27, 2017
-'''
-%A: Full weekday name (e.g., "Friday")
-%B: Full month name (e.g., "January")
-%d: Day of the month as a zero-padded decimal number (e.g., "27")
-%Y: Year with century as a decimal number (e.g., "2017")
-'''
+# write to a file
+with open(file="todos.json", mode='a') as file:
+    file.write(api_response.text)
 
-name = "Fred"
-print(f"He said his name is {name!r}.")
-# Output: He said his name is 'Fred'.
+
+
+
+
+
+
+
+
