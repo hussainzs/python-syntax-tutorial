@@ -351,7 +351,6 @@ Python supports eight comparison operations, all of which have the same priority
 | `in`          | Checks if an element exists in an iterable (`__contains__` method).         |
 | `not in`      | Checks if an element does **not** exist in an iterable (`__contains__`).    |
 
----
 
 #### **Examples**
 
@@ -407,3 +406,148 @@ x = 10
 y = 10
 print(x is y)  # Output: True (unexpected result because of integer caching outside of the scope of this tutorial)
 ```
+
+### 2.3.4 Operators on Numerical Types: `int` and `float`
+
+Python provides a variety of operations for working with numerical types such as `int` and `float`. Below is a breakdown of these operations:
+
+#### **Basic Arithmetic Operations**
+
+- **Addition (`x + y`)**: Adds two numbers.
+  
+  ```python
+  x = 10
+  y = 5
+  result = x + y
+  print("Sum:", result)  # Output: Sum: 15
+  ```
+
+- **Subtraction (`x - y`)**: Subtracts the second number from the first.
+
+  ```python
+  x = 10
+  y = 5
+  result = x - y
+  print("Difference:", result)  # Output: Difference: 5
+  ```
+
+- **Multiplication (`x * y`)**: Multiplies two numbers.
+
+  ```python
+  x = 10
+  y = 5
+  result = x * y
+  print("Product:", result)  # Output: Product: 50
+  ```
+
+- **Division (`x / y`)**: Divides the first number by the second and returns a floating-point result.
+
+  ```python
+  x = 10
+  y = 4
+  result = x / y
+  print("Quotient:", result)  # Output: Quotient: 2.5
+  print(type(result)) # Output: <class 'float'>
+  ```
+
+#### **Integer Division and Modulus**
+
+- **Floored Division (`x // y`)**: Returns the quotient of the division, rounded DOWN to the nearest integer.
+
+```python
+left = 3
+right = 4
+mid = (left + right) // 2 # this is how mid is calculated in binary search
+print(f"Simple Integer Division: {(left + right) / 2}") # Output: 3.5 (in binary search we need an integer index not float like 3.5)
+print("Floored Quotient:", mid) # Output: 3
+```
+
+- **Modulus (`x % y`)**: Returns the remainder of the division.
+
+```python
+x = 10
+y = 3
+print("Remainder:", x % y)  # Output: Remainder: 1
+print("Remainder:", y % x)  # Output: Remainder: 3 (for any x % y, if x < y, the result is x)
+```
+
+```python
+# Example: Check if a number is even or odd
+num = 10
+print("Even") if num % 2 == 0 else print("Odd")
+```
+
+#### **Unary Operations**
+
+- **Negation (`-x`)**: Negates the value of `x`.
+
+  ```python
+  x = 10
+  print("Negated:", -x)  # Output: Negated: -10
+  ```
+
+#### **Absolute Value**
+
+- **Absolute (`abs(x)`)**: Returns the absolute value of `x`.
+
+  ```python
+  x = -10
+  print("Absolute Value:", abs(x))  # Output: Absolute Value: 10
+  ```
+
+#### **Type Conversion**
+
+- **Convert to Integer (`int(x)`)**: Converts a float or string to an integer (truncating the fractional part for floats).
+
+```python
+x = 3.7
+print("Integer:", int(x))  # Output: Integer: 3
+
+someString = "182"
+print(int(someString)) # Output: 182
+
+someString = "  182  " # spaces are ignored
+print(int(someString)) # Output: 182
+
+someString = "182.5" # decimal point is not allowed for int() conversion from string
+print(int(someString)) # Output: ValueError: invalid literal for int() with base 10: '  182.5  '
+
+someString = "a2b2" # alphabets are not allowed
+print(int(someString)) # Output: ValueError: invalid literal for int() with base 10: 'a2b2'
+```
+
+- **Convert to Float (`float(x)`)**: Converts an integer or string to a floating-point number.
+
+  ```python
+  x = 3
+  print("Float:", float(x))  # Output: Float: 3.0
+  ```
+
+#### **Exponents and Power**
+
+- **Power (`pow(x, y)` or `x ** y`)**: Raises `x` to the power of `y`.
+
+  ```python
+  x = 2
+  y = 3
+  print("Power (pow):", pow(x, y))  # Output: Power (pow): 8
+  print("Power (**):", x ** y)  # Output: Power (**): 8
+  print(pow(0,0)) # Output: 1 (0^0 = 1) a common mathematical convention 
+  ```
+
+- **Divmod (`divmod(x, y)`)**: divmod(x,y) = (x // y, x % y). Returns a tuple containing the floored quotient and remainder of the division. 
+
+  ```python
+  x = 10
+  y = 3
+  print("Divmod:", divmod(x, y))  # Output: Divmod: (3, 1)
+  print("Divmod:", divmod(y, x))  # Output: Divmod: (0, 3)
+  ```
+
+### **Notes**
+
+1. The modulus operator (`%`) and floored division work consistently with negative numbers.
+2. Conversion from `float` to `int` truncates the decimal part.
+3. `float()` accepts strings like "+inf" or "-nan" to represent infinity or NaN.
+
+
