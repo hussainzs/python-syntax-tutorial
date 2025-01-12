@@ -126,8 +126,8 @@ Python has several built-in data types that are fundamental to writing programs.
    - Immutable, meaning they cannot be changed once created. If you need to modify a string, you create a new one.
 ```python
 name = "Alice"
-message = 'Hello, World!'
-multiline = '''This is a 
+message = 'Hello 2 World!'
+multiline = '''This is a #42^5$
                 multi-line string'''
 ```
 
@@ -183,95 +183,89 @@ print(x)        # Output: 10.5
 print(type(x))  # Output: <class 'float'>
 ```
 
-**Output:**
-```
-10
-<class 'int'>
-Ten
-<class 'str'>
-10.5
-<class 'float'>
-```
+### **2.3 Built-in Datatype Details**
 
-**Considerations:**
-- **Type Checking:** Use the `type()` function to check a variable's type.
-- **Type Conversion:** Convert between types using functions like `int()`, `float()`, `str()`, etc.
 
-**Example of Type Conversion:**
+### **2.3.1 Strings: F-Strings (Formatted String Literals)**
+
+**Overview:**
+- **Introduced in Python 3.6**, F-strings (`f` or `F`) provide an efficient way to embed expressions directly within string literals.
+- **Syntax:** Place expressions inside curly braces `{}`. Text outside braces is treated as literal.
+
+- **Basic String Interpolation:**
+  - Embed variables directly into strings.
+  ```python
+  name = "Alice"
+  age = 30
+  print(f"Name: {name}, Age: {age}")
+  # Output: Name: Alice, Age: 30
+  ```
+
+- **Debugging with `=`:**
+  - Show both the expression and its evaluated value.
+  ```python
+  print(f"Debug: {age=}")
+  # Output: Debug: age=30
+  ```
+
+- **Expressions Inside F-Strings:**
+  - Use inline expressions like method calls or calculations.
+  ```python
+  name = "Alice"
+  print(f"Uppercase: {name.upper()}")
+  # Output: Uppercase: ALICE
+  ```
+
+- **Formatting Numbers:**
+  - Use format specifiers to control the display of numbers appended by colon :
+  - For example, `:.2f` formats a float to two decimal places.
+  - Format is defined by width, precision, and type (e.g., `f` is float precision type) i.e. `{value:width.precisiontype}`.
+  - **Width:** How many characters the string should be. Padded with spaces if needed.
+  - **Precision:** Number of decimal places. rounded to fit.
+  > Other useful format specifiers include `:b` for binary, `:e` for scientific notation, and `:%` for percentage.
 ```python
-num_str = "100"
-num_int = int(num_str)     # Converts string to integer
-num_float = float(num_int) # Converts integer to float
+height = 5.6789
+print(f"Height: {height:.1f}") # Output: Height: 5.7
+  
+num = 19
+print(f"{num:b}") # Output: 10011
 
-print(num_int)    # Output: 100
-print(type(num_int))  # Output: <class 'int'>
-print(num_float)  # Output: 100.0
-print(type(num_float)) # Output: <class 'float'>
+percent = 65/100
+print(f"{percent:%}") # Output: 65.000000%
+print(f"{percent:.2%}") # Output: 65.00%
+
+percent = 4531
+print(f"{percent:.2e}") # Output: 4.53e+03
 ```
 
-**Output:**
-```
-100
-<class 'int'>
-100.0
-<class 'float'>
-```
+- **Date Formatting:**
+  - Use date format directives to display dates in a specific format:
+  - **Directives:** Special codes that start with `%` to represent date components.
+  
+| Directive | Meaning                            | Example Output       |
+|-----------|------------------------------------|----------------------|
+| `%A`      | Full weekday name                 | `Friday`            |
+| `%B`      | Full month name                   | `January`           |
+| `%d`      | Day of the month (zero-padded)    | `27`                |
+| `%Y`      | Year with century as decimal      | `2017`              |
+| `%H`      | Hour (24-hour clock)              | `15`                |
+| `%M`      | Minute                            | `45`                |
+| `%S`      | Second                            | `30`                |
 
----
 
-## **Summary**
-
-Understanding Python's syntax and indentation is crucial, as they define the structure and flow of your code. Variables in Python are dynamically typed, allowing flexibility in assigning different data types without explicit declarations. Mastery of these basics lays a strong foundation for advancing to more complex programming concepts.
-
----
-
-### **Practice Exercises**
-
-1. **Indentation Practice:**
-   - Write an `if-else` statement that checks if a number is positive, negative, or zero, and prints an appropriate message. Ensure correct indentation.
-
-2. **Variable Naming:**
-   - Declare variables with valid and invalid names. Observe the behavior and understand the naming rules.
-
-3. **Data Types Manipulation:**
-   - Assign different data types to a single variable and use the `type()` function to print their types.
-   - Convert a string containing a number to an integer and perform an arithmetic operation.
-
-**Example Solution for Exercise 3:**
 ```python
-# Assign different data types to the same variable
-var = "Python"
-print(var, type(var))  # Output: Python <class 'str'>
+from datetime import datetime
+today = datetime(2017, 1, 27)
 
-var = 3.14
-print(var, type(var))  # Output: 3.14 <class 'float'>
+# print without directives
+print(f"{today}") # Output: 2017-01-27 00:00:00
 
-var = True
-print(var, type(var))  # Output: True <class 'bool'>
-
-# Type conversion and arithmetic operation
-num_str = "50"
-num_int = int(num_str)
-result = num_int + 25
-print(result)  # Output: 75
+print(f"{today:%A, %B %d, %Y}") # Output: Friday, January 27, 2017
 ```
 
-**Output:**
-```
-Python <class 'str'>
-3.14 <class 'float'>
-True <class 'bool'>
-75
-```
-
----
-
-### **Further Reading**
-
-- [Python Official Documentation: Data Types](https://docs.python.org/3/library/stdtypes.html)
-- [PEP 8 - Style Guide for Python Code](https://pep8.org/)
-- [W3Schools Python Indentation](https://www.w3schools.com/python/python_indentation.asp)
-
----
-
-This content should provide a solid foundation for your tutorial on Python basics, covering essential aspects of syntax, indentation, variables, data types, and dynamic typing with clear explanations and practical examples.
+- **Escaping Braces:**
+  - Use double curly braces `{{` and `}}` to include literal braces.
+  ```python
+  print(f"{{Hello}}")
+  # Output: {Hello}
+    ```
