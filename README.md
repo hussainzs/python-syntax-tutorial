@@ -31,7 +31,7 @@ print("This will cause an error.")
 """
 ```
 
-- **[Line Continuation](https://docs.python.org/3.12/reference/lexical_analysis.html#explicit-line-joining):** Two or more physical lines may be joined into logical lines using backslash characters (\)
+- **[Line Continuation](https://docs.python.org/3.12/reference/lexical_analysis.html#explicit-line-joining):** Two or more physical lines may be joined into logical lines using backslash characters (\\)
 ```python
 if 1900 < year < 2100 and 1 <= month <= 12 \
    and 1 <= day <= 31 and 0 <= hour < 24 \
