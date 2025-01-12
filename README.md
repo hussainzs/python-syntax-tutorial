@@ -327,7 +327,7 @@ print(False or False)  # Output: False
    if not is_logged_in:
        print("Please log in to continue.")
    ```
-### **2.3.3 Comparisons**
+### **2.3.3 [Comparisons](https://docs.python.org/3/library/stdtypes.html#comparisons)**
 
 Python supports eight comparison operations, all of which have the same priority.
 
@@ -407,7 +407,7 @@ y = 10
 print(x is y)  # Output: True (unexpected result because of integer caching outside of the scope of this tutorial)
 ```
 
-### 2.3.4 Operators on Numerical Types: `int` and `float`
+### 2.3.4[ Operators on Numerical Types](https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex): `int` and `float`
 
 Python provides a variety of operations for working with numerical types such as `int` and `float`. Below is a breakdown of these operations:
 
@@ -544,10 +544,119 @@ print(int(someString)) # Output: ValueError: invalid literal for int() with base
   print("Divmod:", divmod(y, x))  # Output: Divmod: (0, 3)
   ```
 
-### **Notes**
+#### **Notes**
 
 1. The modulus operator (`%`) and floored division work consistently with negative numbers.
 2. Conversion from `float` to `int` truncates the decimal part.
 3. `float()` accepts strings like "+inf" or "-nan" to represent infinity or NaN.
 
+### [String Methods](https://docs.python.org/3/library/stdtypes.html#string-methods)
+Python provides many built-in methods to work with strings. Below are some of them but checkout the documentation for a complete list.
 
+- **`str.upper()`**: Converts all characters in the string to uppercase.
+
+  ```python
+  text = "hello world"
+  print(text.upper())  # Output: HELLO WORLD
+  ```
+
+- **`str.lower()`**: Converts all characters in the string to lowercase.
+
+  ```python
+  text = "HELLO WORLD"
+  print(text.lower())  # Output: hello world
+  ```
+
+- **`str.capitalize()`**: Capitalizes the first character of the string.
+
+  ```python
+  text = "hello world"
+  print(text.capitalize())  # Output: Hello world
+  ```
+
+- **`str.title()`**: Capitalizes the first character of each word.
+
+  ```python
+  text = "hello world"
+  print(text.title())  # Output: Hello World
+  ```
+
+#### **2. String Search and Replace**
+- **`str.find(substring)`**: Returns the index of the first occurrence of `substring` in the string, or `-1` if not found.
+
+  ```python
+  text = "hello world"
+  print(text.find("world"))  # Output: 6
+  ```
+
+- **`str.replace(old, new, count=-1)`**: Replaces all occurrences of `old` with `new`.
+> Python 3.13+ allows you to use `count` parameter to specify the number of occurrences to replace.
+If count is given, only the first count occurrences are replaced. If count is not specified or -1, then all occurrences are replaced.
+```python
+text = "X is crazy, X is a genius, X is a fool, X is a hero"
+print(text.replace("X", "Z", count=2)) # Output: Z is crazy, Z is a genius, X is a fool, X is a hero
+text = "X is crazy, X is a genius, X is a fool, X is a hero"
+print(text.replace("X", "Z")) # Output: Z is crazy, Z is a genius, Z is a fool, Z is a hero
+```
+
+#### **3. String Splitting and Joining**
+- **`str.split(delimiter)`**: Splits the string into a list of substrings based on the specified `delimiter`.
+
+```python
+text = "apple,banana,cherry"
+print(text.split(","))  # Output: ['apple', 'banana', 'cherry']
+  
+# fun fact with list
+print(list("apple")) # Output: ['a', 'p', 'p', 'l', 'e']
+```
+
+- **`delimiter.join(iterable)`**: Joins elements of an iterable (e.g., list) into a single string using the `delimiter`.
+
+  ```python
+  fruits = ["apple", "banana", "cherry"]
+  print(",".join(fruits))  # Output: apple,banana,cherry
+  ```
+
+#### **4. String Trimming**
+- **`str.strip()`**: Removes leading and trailing whitespace.
+
+  ```python
+  text = "   hello world   "
+  print(text.strip())  # Output: hello world
+  ```
+
+- **`str.lstrip()`**: Removes leading whitespace.
+
+  ```python
+  text = "   hello world"
+  print(text.lstrip())  # Output: hello world
+  ```
+
+- **`str.rstrip()`**: Removes trailing whitespace.
+
+  ```python
+  text = "hello world   "
+  print(text.rstrip())  # Output: hello world
+  ```
+
+#### **5. String Validation**
+- **`str.isdigit()`**: Returns `True` if all characters in the string are digits.
+
+  ```python
+  text = "12345"
+  print(text.isdigit())  # Output: True
+  ```
+
+- **`str.isalpha()`**: Returns `True` if all characters in the string are alphabetic.
+
+  ```python
+  text = "hello"
+  print(text.isalpha())  # Output: True
+  ```
+
+- **`str.isalnum()`**: Returns `True` if all characters in the string are alphanumeric.
+
+  ```python
+  text = "hello123"
+  print(text.isalnum())  # Output: True
+  ```
