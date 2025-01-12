@@ -269,9 +269,8 @@ print(f"{today:%A, %B %d, %Y}") # Output: Friday, January 27, 2017
   print(f"{{Hello}}")
   # Output: {Hello}
     ```
-### **2.3.2 Boolean Operations: `and`, `or`, `not`**
-
-**Overview:**  
+### **2.3.2 [Boolean Operations](https://docs.python.org/3/library/stdtypes.html#boolean-operations-and-or-not): `and`, `or`, `not`**
+ 
 Boolean operations in Python are used for logical decision-making. They operate on Boolean values (`True`, `False`)
 
 1. **`x or y`**
@@ -328,4 +327,83 @@ print(False or False)  # Output: False
    if not is_logged_in:
        print("Please log in to continue.")
    ```
+### **2.3.3 Comparisons**
 
+Python supports eight comparison operations, all of which have the same priority.
+
+#### **Comparison Operators**
+
+| **Operation** | **Meaning**                  |
+|---------------|------------------------------|
+| `<`           | Strictly less than           |
+| `<=`          | Less than or equal           |
+| `>`           | Strictly greater than        |
+| `>=`          | Greater than or equal        |
+| `==`          | Equal                        |
+| `!=`          | Not equal                    |
+| `is`          | Object identity              |
+| `is not`      | Negated object identity      |
+
+**Additional Operators**
+
+| **Operation** | **Meaning**                                                                 |
+|---------------|-----------------------------------------------------------------------------|
+| `in`          | Checks if an element exists in an iterable (`__contains__` method).         |
+| `not in`      | Checks if an element does **not** exist in an iterable (`__contains__`).    |
+
+---
+
+#### **Examples**
+
+- **Basic Comparisons:**
+  ```python
+  x = 5
+  y = 10
+  print(x < y)       # Output: True
+  print(x >= y)      # Output: False
+  ```
+
+- **Equality and Identity:**
+  ```python
+  a = [1, 2, 3]
+  b = [1, 2, 3]
+  c = a
+  print(a == b)      # Output: True (same content)
+  print(a is b)      # Output: False (different objects)
+  print(a is c)      # Output: True (same object)
+  ```
+
+- **Chained Comparisons:**
+  ```python
+  x, y, z = 5, 10, 15
+  print(x < y <= z)  # Output: True
+  ```
+
+- **Membership Testing:**
+  ```python
+  nums = [1, 2, 3]
+  print(2 in nums)   # Output: True
+  print(4 not in nums)  # Output: True
+  ```
+
+#### **Notes**
+- You may also say, `x < y <= z` which is equivalent to `x < y and y <= z`.
+- The `in` and `not in` operators are supported by objects implementing the `__contains__` method, such as lists, strings, and dictionaries.
+
+>**Warning:** Avoid using `is` and `is not` to compare values. Use `==` and `!=` for value comparisons. `is` and `is not` are used to compare object identities.
+
+```python
+a = [1, 2, 3]
+b = [1, 2, 3]
+print(a == b)  # Output: True
+print(a is b)  # Output: False since they are different objects in memory with different memory addresses
+
+c = a
+print(a is c)  # Output: True since they are the same object in memory which means they both point to the same memory location (same reference)
+```
+```python
+# Wrong use of is
+x = 10
+y = 10
+print(x is y)  # Output: True (unexpected result because of integer caching outside of the scope of this tutorial)
+```
