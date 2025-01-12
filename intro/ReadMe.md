@@ -269,3 +269,63 @@ print(f"{today:%A, %B %d, %Y}") # Output: Friday, January 27, 2017
   print(f"{{Hello}}")
   # Output: {Hello}
     ```
+### **2.3.2 Boolean Operations: `and`, `or`, `not`**
+
+**Overview:**  
+Boolean operations in Python are used for logical decision-making. They operate on Boolean values (`True`, `False`)
+
+1. **`x or y`**
+   - **Result:** Returns True if either `x` or `y` is True, otherwise False. 
+   - **Short-Circuit Behavior:** Stops evaluating if `x` is True i.e. If x is True, the result is x, else y (this is often used in web development rendering)
+
+```python
+a = 0
+b = 10
+print(a or b)  # Output: 10 because a is evaluated as False (since its 0) and b is evaluated as True (since non-zero). Thus, the expression is (False OR True) = True
+print(False or False)  # Output: False
+```
+
+   **Use Case:**
+   ```python
+   username = input("Enter username: ") or "Guest"
+   print(f"Welcome, {username}!")  # Default to "Guest" if input() outputs empty string which is falsy.
+   ```
+
+2. **`x and y`**
+   - **Result:** Returns True if both `x` and `y` are True, otherwise False.
+   - **Short-Circuit Behavior:** Stops evaluating if `x` is falsy. i.e. If x is False, the result is x, else y.
+   > You can use this short circuit for minor optimizations in your code. Such as if you have two conditions and the first one is more likely to be false, you can put it first or put the condition that's quicker to check first.
+
+   ```python
+   a = 0
+   b = 10
+   print(a and b)  # Output: 0
+   print(b and a)  # Output: 0
+   ```
+
+   **Use Case:**
+   ```python
+   threshold = 50
+   score = 75
+   print("Pass" if score >= threshold and score <= 100 else "Invalid score")
+   ```
+
+3. **`not x`**
+   - **Result:** Negates the value of `x`. If `x` is True, returns False. If `x` is False, returns True.
+   - **Lower Priority:** `not` has lower precedence than comparison operators like `<`, `>`, `==`, etc.
+
+   ```python
+   a = 0
+   b = 10
+   print(not a)  # Output: True
+   print(not b)  # Output: False
+   # Lower priority: "not a == b" will be evaluated as "not (a == b)"
+   ```
+
+   **Use Case:**
+   ```python
+   is_logged_in = False
+   if not is_logged_in:
+       print("Please log in to continue.")
+   ```
+
