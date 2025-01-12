@@ -44,34 +44,19 @@ my_list = [1, 2, 3, # a comment may appear here no problem
            4, 5, 6]
 
 my_dict = {'key1': 'value1',  # another comment
-           'key2': 'value2'}  # comment here too if you wish
+           'key2': 'value2',
+           'key3': 'value3'}  # comment here too if you wish
 ```
 
-- **Reserved Keywords:** Python has reserved words (e.g., `if`, `else`, `for`, `while`, `def`, `class`) that cannot be used as identifiers.
-
-**Example:**
+- **[Reserved Keywords](https://docs.python.org/3.12/reference/lexical_analysis.html#identifiers):** Python has reserved words that cannot be used as identifiers.
 ```python
-# Single-line comment
-
-"""
-This is a multi-line comment
-or docstring.
-"""
-
-# Variable assignment
-x = 10
-y = 20
-
-# Conditional statement
-if x < y:
-    print("x is less than y")
-else:
-    print("x is not less than y")
-```
-
-**Output:**
-```
-x is less than y
+False      await      else       import     pass
+None       break      except     in         raise
+True       class      finally    is         return
+and        continue   for        lambda     try
+as         def        from       nonlocal   while
+assert     del        global     not        with
+async      elif       if         or         yield
 ```
 
 ---
@@ -79,11 +64,9 @@ x is less than y
 ### **2.2 Variables and Data Types**
 
 #### **2.2.1 Declaring Variables**
-
-**Explanation:**
-- **Definition:** Variables are used to store data that can be referenced and manipulated in a program.
+Variables are used to store data. They are created by assigning a value to a name.
 - **Naming Rules:**
-  - Must start with a letter (a-z, A-Z) or an underscore `_`.
+  - Must start with a letter (a-z, A-Z) or an underscore `_`. NOT by anything else.
   - Can contain letters, digits (0-9), and underscores.
   - Case-sensitive.
   - Should not be a reserved keyword.
@@ -91,30 +74,28 @@ x is less than y
 **Example:**
 ```python
 # Valid variable names
-my_variable = 5
-_age = 30
-firstName = "John"
+my_variable = 5 # snake_case
+_age1 = 30 # inside a class, _ prefix indicates a private variable or method
+firstName = "John" # camelCase
 
 # Invalid variable names (will raise SyntaxError)
 2nd_place = "Alice"  # Starts with a digit
+$price = 100         # variables cannot start with anything else than a letter or underscore
 class = "Math"       # 'class' is a reserved keyword
-```
-
-**Output:**
-```
-SyntaxError: invalid syntax
 ```
 
 #### **2.2.2 Built-in Data Types**
 
-**Explanation:**
 Python has several built-in data types that are fundamental to writing programs. The primary data types covered here are integers, floats, strings, and booleans.
 
+##### [Numeric Data Types](https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex)
 1. **Integers (`int`):**
    - Whole numbers without a decimal point.
    - Can be positive, negative, or zero.
+   - Large numbers are represented in scientific notation (e.g., `1e9` for 1 billion).
+   - Immutable, meaning they cannot be changed once created. Pass by value not by reference.
+   > **Pass by Value** means that the function is called with a copy of the argument (the value), not the actual argument.
 
-   **Example:**
    ```python
    age = 25
    score = -100
@@ -123,38 +104,57 @@ Python has several built-in data types that are fundamental to writing programs.
 2. **Floats (`float`):**
    - Numbers with a decimal point.
    - Can represent real numbers, including positive, negative, and zero.
+   - Large numbers are represented in scientific notation (e.g., `1.0e-3` for 0.001).
+   - Immutable, meaning they cannot be changed once created. Pass by value not by reference.
 
-   **Example:**
    ```python
    height = 5.9
    temperature = -23.5
    ```
+3. **Complex Numbers (`complex`):**
+   - Numbers with a real and imaginary part.
+   - Written in the form `a + bj`, where `a` and `b` are floats and `j` is the imaginary unit.
 
-3. **Strings (`str`):**
-   - Sequences of characters enclosed in single quotes `' '` or double quotes `" "`.
-   - Can include letters, numbers, symbols, and whitespace.
-
-   **Example:**
    ```python
-   name = "Alice"
-   greeting = 'Hello, World!'
+   z = 3 + 4j
    ```
+##### [Text Sequence - str](https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str)
+
+4- **Strings (`str`):**
+   - Sequences of characters enclosed in single quotes `' '` or double quotes `" "` or triple quotes `''' '''` or `""" """`.
+   - Can include letters, numbers, symbols, and whitespace.
+   - Immutable, meaning they cannot be changed once created. If you need to modify a string, you create a new one.
+```python
+name = "Alice"
+message = 'Hello, World!'
+multiline = '''This is a 
+                multi-line string'''
+```
 
 4. **Booleans (`bool`):**
-   - Represents one of two values: `True` or `False`.
-   - Commonly used in conditional statements and comparisons.
+   - Represents one of two values: `True` or `False`. Note, they are case-sensitive.
+   - Here are most of the built-in objects considered false (example below)
+   > constants defined to be false: `None` and `False`. 
+   > zero of any numeric type: `0`, `0.0`, `0j`, `Decimal(0)`, `Fraction(0, 1)`
+   > empty sequences and collections: `''`, `()`, `[]`, `{}`, `set()`, `range(0)`
+```python
+is_student = True
 
-   **Example:**
-   ```python
-   is_student = True
-   has_graduated = False
-   ```
+list = []
+print(bool(list))  # Output: False
+
+int = 0
+print(bool(int))  # Output: False
+
+dict = None
+print(bool(dict))  # Output: False
+```
 
 **Additional Data Types (Brief Overview):**
-- **Lists (`list`):** Ordered, mutable collections.
-- **Tuples (`tuple`):** Ordered, immutable collections.
-- **Dictionaries (`dict`):** Unordered, mutable collections of key-value pairs.
-- **Sets (`set`):** Unordered collections of unique elements.
+- **[Lists](https://docs.python.org/3/library/stdtypes.html#lists) (`list`):** Ordered, mutable collections.
+- **[Tuples](https://docs.python.org/3/library/stdtypes.html#tuples) (`tuple`):** Ordered, immutable collections.
+- **[Dictionaries](https://docs.python.org/3/library/stdtypes.html#mapping-types-dict) (`dict`):** Unordered, mutable collections of key-value pairs.
+- **[Sets](https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset) (`set`):** Unordered collections of unique elements.
 
 #### **2.2.3 Dynamic Typing in Python**
 
