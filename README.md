@@ -2,7 +2,7 @@ Most sections are linked to the relevant official Python documentation for furth
 
 - Beginner Friendly Python Tutorial by official Python documentation: https://docs.python.org/3.13/tutorial/index.html#tutorial-index
 - Python Standard Library reference: https://docs.python.org/3.13/library/index.html#library-index
-- 
+
 ## **1. [Python Language Reference](https://docs.python.org/3.13/reference/index.html)**
 
 ### **2.1 Basic Syntax and Indentation**
