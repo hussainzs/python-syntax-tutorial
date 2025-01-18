@@ -202,7 +202,11 @@ print(bool(dict))  # Output: False
 - Python uses dynamic typing, meaning that variable types are determined at runtime and can change as
   the program executes.
 - Type Annotations are strongly recommended for better code readability and maintainability. 
->However, a common misconception is that type annotations make code faster or enforce type checking. They do not. They simply provide hints to developers and tools.
+> However, a common misconception is that type annotations make code faster or enforce type checking. They do not. They simply provide hints to developers and tools.
+
+> Read the Best Practices here: https://typing.readthedocs.io/en/latest/reference/best_practices.html
+
+> For a list of built-in types, examples on type hinting for functions and classes, check out this: https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html
 
 ```python
 
