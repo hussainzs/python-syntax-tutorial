@@ -24,7 +24,7 @@ if True:
 
 # Incorrect indentation (will raise an IndentationError)
 if True:
-    print("This will cause an error.")
+print("This will cause an error.")
 ```
 
 #### Basic Syntax Rules
@@ -126,15 +126,14 @@ integers, floats, strings, and booleans.
 1. **Integers (`int`):**
     - Whole numbers without a decimal point.
     - Can be positive, negative, or zero.
-    - Large numbers are represented in scientific notation (e.g., `1e9` for 1 billion).
-    - Immutable, meaning they cannot be changed once created. Pass by value not by reference.
-   > **Pass by Value** means that the function is called with a copy of the argument (the value), not the actual
-   argument.
+    - Python integers can be of arbitrary length, limited only by available memory.
+    - Immutable, meaning they cannot be changed once created. Pass by value, not by reference.
 
    ```python
    age = 25
    score = -100
-   ```
+   large_number = 123456789012345678901234567890
+
 
 2. **Floats (`float`):**
     - Numbers with a decimal point.
@@ -669,7 +668,7 @@ print(text.replace("X", "Z"))  # Output: Z is crazy, Z is a genius, Z is a fool,
 text = "apple,banana,cherry"
 print(text.split(","))  # Output: ['apple', 'banana', 'cherry']
 
-# fun fact with list
+# Converting a string to a list of characters
 print(list("apple"))  # Output: ['a', 'p', 'p', 'l', 'e']
 ```
 
@@ -831,19 +830,21 @@ twice[1] = "def" # output: TypeError: 'tuple' object does not support item assig
        file.write('Hello, world!')  # File automatically closed
    ```
 
-10. **Optimization for Immutable Objects**  
-    Python MAY reuse objects for immutable types with the same value to save memory (Integer Caching)
-> Never rely on this behavior for mutable objects 
+10. **Optimization for Immutable Objects**
+    Python **may** reuse objects for immutable types with the same value to save memory (Integer Caching).
+    > **Important:** Never rely on this behavior for program logic, as it's an implementation detail that can vary.
 
-```python
+    ```python
     a = 256
     b = 256
-    print(a is b)  # True (same memory address for small integers: Integer Caching)
+    print(a is b)  # Output: True (same memory address for small integers due to integer caching)
 
     x = 257
     y = 257
-    print(x is y)  # False (different memory address for larger integers)
-```
+    print(x is y)  # Output: False (different memory addresses for larger integers)
+    ```
+    > **Note:** Integer caching typically applies to integers between -5 and 256. Behavior may differ in various Python implementations.
+
 > If you are more interested here is some information:
 
 Python implements integer caching with the following rules:
